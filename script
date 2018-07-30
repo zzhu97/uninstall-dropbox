@@ -1,1 +1,9 @@
-#C:\Users\zz1424> & C:\Users\zz1424\AppData\Roaming\Dropbox\bin\DropboxUninstaller
+$Dir = "C:\Users\"
+$drop = "\Appdata\Roaming\Dropbox"
+
+taskkill /im dropbox.exe /f
+& 'C:\Program Files (x86)\Dropbox\Client\DropboxUninstaller.exe' /S -ErrorAction SilentlyContinue
+
+gci -name c:\users | foreach ($_) {
+    Remove-Item -recurse -force $Dir$_$drop -ErrorAction SilentlyContinue
+}
